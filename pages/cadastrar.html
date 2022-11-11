@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styleLogin.css">
+</head>
+<body>
+    
+    <!--FORMULÁRIO DE CADASTRO-->
+		<div class="col-5 offset-1 d-block mx-auto mt-5">
+			<form class="form" method="post">
+				<fieldset>
+					<legend class="text-center">
+						Cadastre-se:
+					</legend>
+					<div class="form-group">
+						<label for="user">Nome:</label>
+						<input class="form-control" type="text" name="nome" id="nome">
+					</div>
+					<div class="form-group">
+						<label for="user">E-mail:</label>
+						<input class="form-control" type="email" name="email" id="email">
+					</div>
+					<div class="form-group">
+						<label for="user">Data de Nascimento:</label>
+						<input class="form-control" type="date" name="dt_nasc" id="dt_nasc">
+					</div>
+					<div class="form-group">
+						<label for="user">Senha</label>
+						<input class="form-control" type="password" name="passw" id="passw">
+					</div><br>
+					<div class="form-group">
+						<button type="submit" class="btn btn-primary">Cadastrar</button>
+						<a href="../index.html">Já possuo cadastro</a>
+					</div>
+				</fieldset>
+				
+			</form>
+		</div>
+
+
+    <!-- JAVASCRIPT LOCAL -->
+    <script src="js/login.js"></script>
+    
+    <!-- JAVASCRIPT BOOTSTRAP -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+</html>

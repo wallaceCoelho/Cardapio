@@ -1,0 +1,18 @@
+@charset "Utf-8";
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow: hidden;
+    align-items: center;
+}
+
+.label {
+    position: relative;
+    font-size: .9rem;
+    bottom: -7px;
+}
