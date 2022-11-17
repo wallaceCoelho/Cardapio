@@ -30,6 +30,26 @@ if(isset($_POST['nm-cat'])) {
         echo "Erro".$conn -> error;
      }
 }
+//CADASTRAR PRODUTOS
+else if(isset($_POST['id_cat'])) {
+
+    $destino = '../media/'.$_FILES['foto']['name'];
+    $sql = 'INSERT INTO produtos (nome, descricao, valor, foto, id_categoria) 
+            VALUES ("'.$_POST['nm-prod'].'", "'.$_POST['descricao'].'", "'.$_POST['valor'].'", "'.$destino.'", "'.$_POST['id-cat'].'")';
+    
+    if(move_uploaded_file($_FILES['foto']['temp_name'], $destino)){
+        $res = $conn -> query($sql);
+    
+        if($res){
+            echo "Cadastrado com sucesso!";
+        } else {
+            echo "Erro".$conn -> error;
+        }
+    } else {
+        echo "Erro ao salvar foto!";
+    }
+
+}
 
 //LISTA APRESENTADA DO BANCO DE DADOS DA TABELA CATEGORIA
 if(isset($_GET['listar'])){

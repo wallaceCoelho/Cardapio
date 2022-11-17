@@ -10,42 +10,41 @@
 </head>
 <body>
 
+    <!-- CADASTRO DE PRODUTOS -->
     <div class="container w-25 border rounded d-block mt-5 ml-4 py-4">
-        <form action="" method="post">
+        <div action="" method="post">
             <div class="input-group mb-3">
-                <input type="text" class="form-control" aria-label="Exemplo do tamanho do input" aria-describedby="inputGroup-sizing-default">
+                <input name="nm-prod" id="nm-prod" type="text" class="form-control" aria-label="Exemplo do tamanho do input" aria-describedby="inputGroup-sizing-default" placeholder="Nome do produto">
             </div>
             <div class="input-group mb-3">
-                <input type="text" class="form-control" aria-label="Exemplo do tamanho do input" aria-describedby="inputGroup-sizing-default">
+                <input name="valor" id="valor" type="text" class="form-control" aria-label="Exemplo do tamanho do input" aria-describedby="inputGroup-sizing-default" placeholder="Valor do produto">
             </div>
             <div class="input-group mb-3">
-                <input type="text" class="form-control" aria-label="Exemplo do tamanho do input" aria-describedby="inputGroup-sizing-default">
+                <input name="foto" id="foto" type="file" class="form-control" aria-label="Exemplo do tamanho do input" aria-describedby="inputGroup-sizing-default" >
             </div>
             <div class="dropdown mb-3">
                 <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Botão dropdown
+                    Categorias
                 </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Alguma ação</a>
-                    <a class="dropdown-item" href="#">Outra ação</a>
-                    <a class="dropdown-item" href="#">Alguma coisa aqui</a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="id-cat">
+
                 </div>
             </div>
-            <textarea class="form-control mb-3" id="exampleFormControlTextarea1" rows="3"></textarea>
-            <button type="submit" class="btn btn-warning h-25">Enviar</button>
-        </form>
+            <textarea name="descricao" class="form-control mb-3" id="descricao" rows="3" placeholder="Descrição do produto"></textarea>
+            <button type="submit" class="btn btn-warning h-25" id="btn-produto">Enviar</button>
+        </div>
     </div>
+
+    <!-- CRUD -->
     <div class="container w-75 d-block mt-5">
         <div class="container-fluid d-flex justify-content-between mb-4">
-            <input type="text" class="form-control" style="width: 70%;">
+            <input type="text" class="form-control" style="width: 70%;" name="search" id="search">
             <div class="dropdown">
                 <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Botão dropdown
+                Categorias
                 </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Alguma ação</a>
-                    <a class="dropdown-item" href="#">Outra ação</a>
-                    <a class="dropdown-item" href="#">Alguma coisa aqui</a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="id-cat">
+
                 </div>
             </div>
             <button type="submit" class="btn btn-warning" style="height: 38px;">Enviar</button>
@@ -54,39 +53,15 @@
             <table class="table">
                 <thead class="thead bg-warning">
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Primeiro</th>
-                        <th scope="col">Último</th>
-                        <th scope="col">Nickname</th>
-                        <th scope="col">Nickname</th>
-                        <th scope="col">Nickname</th>
+                        <th scope="col">Cód.</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Desc.</th>
+                        <th scope="col">Valor</th>
+                        <th scope="col">Foto</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                    </tr>
+                <tbody id="listaProdutos">
+                    
                 </tbody>
             </table>
         </div>
@@ -112,7 +87,7 @@
         </div>
     </div>
 
-
+    <script src="../js/produtos.js"></script>
      <!-- JAVASCRIPT BOOTSTRAP -->
      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

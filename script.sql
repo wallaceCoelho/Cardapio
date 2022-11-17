@@ -14,3 +14,13 @@ create table categoria(
     cd int primary key AUTO_INCREMENT,
     nome varchar(100)
 );
+
+create table produtos (
+    cd int primary key AUTO_INCREMENT,
+    nome varchar(100),
+    descricao varchar(200),
+    valor decimal(10,2),
+    foto varchar(100),
+    id_categoria int,
+    foreign key (id_categoria) references categoria(cd)
+);
