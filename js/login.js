@@ -19,7 +19,7 @@ window.onload = function (){
                 } else {
                     localStorage.setItem('nome', json.user.nome);
 
-                    window.location = 'pages/adm.html';
+                    window.location = '../pages/adm.html';
                 }
             })
             .catch();

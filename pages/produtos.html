@@ -12,7 +12,7 @@
 
     <!-- CADASTRO DE PRODUTOS -->
     <div class="container w-25 border rounded d-block mt-5 ml-4 py-4">
-        <div action="" method="post">
+        <div>
             <div class="input-group mb-3">
                 <input name="nm-prod" id="nm-prod" type="text" class="form-control" aria-label="Exemplo do tamanho do input" aria-describedby="inputGroup-sizing-default" placeholder="Nome do produto">
             </div>
@@ -20,34 +20,27 @@
                 <input name="valor" id="valor" type="text" class="form-control" aria-label="Exemplo do tamanho do input" aria-describedby="inputGroup-sizing-default" placeholder="Valor do produto">
             </div>
             <div class="input-group mb-3">
-                <input name="foto" id="foto" type="file" class="form-control" aria-label="Exemplo do tamanho do input" aria-describedby="inputGroup-sizing-default" >
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" name="foto" id="foto" aria-describedby="inputGroupFileAddon01">
+                    <label class="custom-file-label" for="inputGroupFile01">Escolher arquivo</label>
+                  </div>
             </div>
             <div class="dropdown mb-3">
-                <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Categorias
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="id-cat">
-
-                </div>
+                <select name="id-cat" id="id-cat" class="custom-select bg-warning w-auto"></select>
             </div>
             <textarea name="descricao" class="form-control mb-3" id="descricao" rows="3" placeholder="Descrição do produto"></textarea>
-            <button type="submit" class="btn btn-warning h-25" id="btn-produto">Enviar</button>
+            <button type="submit" class="btn btn-warning h-25" id="btn-produto">Cadastrar</button>
         </div>
     </div>
 
-    <!-- CRUD -->
+    <!-- LISTA PRODUTOS -->
     <div class="container w-75 d-block mt-5">
         <div class="container-fluid d-flex justify-content-between mb-4">
-            <input type="text" class="form-control" style="width: 70%;" name="search" id="search">
+            <input type="text" class="form-control" style="width: 85%;" name="search" id="search" placeholder="Pesquisar">
             <div class="dropdown">
-                <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Categorias
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="id-cat">
-
-                </div>
+                <select name="id-cat2" id="id-cat2" class="custom-select bg-warning">
+                </select>
             </div>
-            <button type="submit" class="btn btn-warning" style="height: 38px;">Enviar</button>
         </div>
         <div class="container-fluid">
             <table class="table">
@@ -57,10 +50,10 @@
                         <th scope="col">Nome</th>
                         <th scope="col">Desc.</th>
                         <th scope="col">Valor</th>
-                        <th scope="col">Foto</th>
+                        <th scope="col" class="col-2">Foto</th>
                     </tr>
                 </thead>
-                <tbody id="listaProdutos">
+                <tbody id="listaProduto">
                     
                 </tbody>
             </table>

@@ -13,3 +13,10 @@ body {
     flex-direction: row;
     justify-content: space-between;
 }
+
+/* #id-cat {
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(255, 199, 45);
+} */

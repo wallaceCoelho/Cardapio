@@ -31,13 +31,13 @@ if(isset($_POST['nm-cat'])) {
      }
 }
 //CADASTRAR PRODUTOS
-else if(isset($_POST['id_cat'])) {
+else if(isset($_POST['id-cat'])) {
 
     $destino = '../media/'.$_FILES['foto']['name'];
     $sql = 'INSERT INTO produtos (nome, descricao, valor, foto, id_categoria) 
             VALUES ("'.$_POST['nm-prod'].'", "'.$_POST['descricao'].'", "'.$_POST['valor'].'", "'.$destino.'", "'.$_POST['id-cat'].'")';
     
-    if(move_uploaded_file($_FILES['foto']['temp_name'], $destino)){
+    if(move_uploaded_file($_FILES['foto']['tmp_name'], $destino)){
         $res = $conn -> query($sql);
     
         if($res){
@@ -54,6 +54,17 @@ else if(isset($_POST['id_cat'])) {
 //LISTA APRESENTADA DO BANCO DE DADOS DA TABELA CATEGORIA
 if(isset($_GET['listar'])){
     $sql = 'SELECT * FROM categoria';
+    $res = $conn -> query($sql);
+    $dados = [];
+
+    while($categ = $res -> fetch_object()){
+        $dados[] = $categ;
+    }
+    echo json_encode($dados);
+}
+
+if(isset($_GET['listarProduto'])){
+    $sql = 'SELECT * FROM produtos';
     $res = $conn -> query($sql);
     $dados = [];
 
