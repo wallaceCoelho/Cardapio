@@ -11,19 +11,28 @@
 <body>
 
     <div class="container w-25 border rounded d-block mt-5 ml-4 py-4">
-        <form action="" method="post">
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" aria-label="Exemplo do tamanho do input" aria-describedby="inputGroup-sizing-default">
-            </div>
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" aria-label="Exemplo do tamanho do input" aria-describedby="inputGroup-sizing-default">
-            </div>
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" aria-label="Exemplo do tamanho do input" aria-describedby="inputGroup-sizing-default">
-            </div>
+        <div>
             <div class="dropdown mb-3">
+                <select name="categoria" id="categoria" class="custom-select bg-primary w-auto text-white"></select>
+            </div>
+
+            <div class="dropdown mb-3">
+                <select name="produto" id="produto" class="custom-select bg-primary w-auto text-white"></select>
+            </div>
+
+            <div class="input-group mb-3">
+                <input type="number" name="quant" id="quant" class="form-control" aria-label="Exemplo do tamanho do input" aria-describedby="inputGroup-sizing-default" placeholder="Quantidade">
+            </div>
+            
+            <textarea class="form-control mb-3" id="obs" rows="3" name="obs"></textarea>
+            <button type="submit" class="btn btn-primary h-25" id="btnAdd">Enviar</button>
+        </div>
+    </div>
+    <div class="container w-75 d-block mt-5">
+        <div class="container-fluid d-flex justify-content-between mb-4">
+            <div class="dropdown">
                 <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Botão dropdown
+                Botão dropdown
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" href="#">Alguma ação</a>
@@ -31,13 +40,6 @@
                     <a class="dropdown-item" href="#">Alguma coisa aqui</a>
                 </div>
             </div>
-            <textarea class="form-control mb-3" id="exampleFormControlTextarea1" rows="3"></textarea>
-            <button type="submit" class="btn btn-primary h-25">Enviar</button>
-        </form>
-    </div>
-    <div class="container w-75 d-block mt-5">
-        <div class="container-fluid d-flex justify-content-between mb-4">
-            <input type="text" class="form-control" style="width: 70%;">
             <div class="dropdown">
                 <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Botão dropdown
@@ -54,40 +56,18 @@
             <table class="table">
                 <thead class="thead bg-primary">
                     <tr>
+                        <th scope="col">Foto</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Quant.</th>
+                        <th scope="col">Desc.</th>
+                        <th scope="col">Uni.</th>
+                        <th scope="col">Total</th>
                         <th scope="col">#</th>
-                        <th scope="col">Primeiro</th>
-                        <th scope="col">Último</th>
-                        <th scope="col">Nickname</th>
-                        <th scope="col">Nickname</th>
-                        <th scope="col">Nickname</th>
                     </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                    </tr>
-                </tbody>
+                </thead> 
+
+                <tbody id="resumo"></tbody>
+
             </table>
         </div>
         <div class="container-fluid">
@@ -112,7 +92,7 @@
         </div>
     </div>
 
-
+    <script src="../js/cardapio.js"></script>
      <!-- JAVASCRIPT BOOTSTRAP -->
      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

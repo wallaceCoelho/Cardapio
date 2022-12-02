@@ -24,3 +24,19 @@ create table produtos (
     id_categoria int,
     foreign key (id_categoria) references categoria(cd)
 );
+
+create table pedido (
+    cd int primary key AUTO_INCREMENT,
+    data date,
+    total decimal(10,2)
+);
+
+create table item (
+    id_produto int,
+    id_pedido int,
+    qt_produto int,
+    obs_produto varchar(100) null,
+    foreign key (id_produto) references produtos (cd),
+    foreign key (id_pedido) references pedido (cd)
+
+);

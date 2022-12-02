@@ -4,9 +4,9 @@ header("Acess-Control-Allow-Origin: *");
 $conn = new mysqli('localhost', 'root', '', 'sistema');
 
 //LOGIN
-if(isset($_GET['email']) && isset($_GET['senha'])) {
+if(isset($_GET['login']) && isset($_GET['senha'])) {
     //consulta no banco
-    $sql = 'SELECT * FROM user WHERE email ="'.$_GET['email'].'" AND senha ="'.$_GET['senha'].'"';
+    $sql = 'SELECT * FROM user WHERE email ="'.$_GET['login'].'" AND senha ="'.$_GET['senha'].'"';
     $res = $conn -> query($sql);
     
     if($res -> num_rows > 0) {
@@ -18,10 +18,36 @@ if(isset($_GET['email']) && isset($_GET['senha'])) {
     echo json_encode($dados);
 }
 
+// CADASTRO USUÁRIO
+else if(isset($_POST['email']) && isset($_POST['passw']) && $_POST['id-prod'] != 'Status'){ 
+
+    $sql = 'INSERT INTO user (nome, email, senha, status) 
+            VALUES ("'.$_POST['nome'].'", "'.$_POST['email'].'", "'.$_POST['passw'].'", "'.$_POST['id-prod'].'")';
+    $res = $conn -> query($sql);
+
+    if($res){
+        echo "Cadastrado com sucesso!";
+        } else {
+        echo "Erro".$conn -> error;
+        }
+}
+
 //CADASTRAR CATEGORIA DE PRODUTOS
-if(isset($_POST['nm-cat'])) {
+else if(isset($_POST['nm-cat'])) {
 
     $sql = 'INSERT INTO categoria (nome) VALUES ("'.$_POST['nm-cat'].'")';
+    $res = $conn -> query($sql);
+
+    if($res){
+        echo "Cadastrado com sucesso!";
+     } else {
+        echo "Erro".$conn -> error;
+     }
+}
+//CADASTRAR PEDIDOS
+else if(isset($_POST['produto'])) {
+
+    $sql = 'INSERT INTO item (id_produto, id_pedido, qt_produto) VALUES ("'.$_POST['nm-cat'].'")';
     $res = $conn -> query($sql);
 
     if($res){
@@ -63,8 +89,13 @@ if(isset($_GET['listar'])){
     echo json_encode($dados);
 }
 
+//LISTA DE PRODUTOS
 if(isset($_GET['listarProduto'])){
     $sql = 'SELECT * FROM produtos';
+
+    if ($_GET['listarProduto'] > 0){
+        $sql .= ' WHERE id_categoria ='.$_GET['listarProduto'];
+    }
     $res = $conn -> query($sql);
     $dados = [];
 
@@ -74,4 +105,15 @@ if(isset($_GET['listarProduto'])){
     echo json_encode($dados);
 }
 
+// EXCLUIR CATEGORIA DE PRODUTO
+if(isset($_GET['delCategoria'])){
+    $sql = 'DELETE FROM categoria WHERE cd='.$_GET['delCategoria'];
+    $res = $conn -> query($sql);
+
+    if($res){
+        echo "Excluído com sucesso!";
+    } else {
+        echo "Erro ao excluir: \n\nExistem produtos vínculados";
+    }
+}
 ?>

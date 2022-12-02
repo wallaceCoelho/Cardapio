@@ -1,18 +1,17 @@
-window.onload = function() {
-    let url = '../php/api.php';
+let url = '../php/api.php';
 
-    UpdateTable();
-    
-    const btnCadCategoria = document.querySelector('#btn-cadCategoria');
-    const nmCat = document.querySelector('#nm-cat');
+UpdateTable();
 
-    btnCadCategoria.addEventListener('click', function(){
-        let form = new FormData();
-        form.append('nm-cat', nmCat.value);
+const btnCadCategoria = document.querySelector('#btn-cadCategoria');
+const nmCat = document.querySelector('#nm-cat');
 
-        fetch(url, {
-            body: form,
-            method: 'post'
+btnCadCategoria.addEventListener('click', function(){
+    let form = new FormData();
+    form.append('nm-cat', nmCat.value);
+
+    fetch(url, {
+        body: form,
+        method: 'post'
         })
         .then(function(data){
             return data.text();
@@ -21,11 +20,11 @@ window.onload = function() {
             alert(data);
             UpdateTable();
         });
-    });
+});
 
-    function UpdateTable(){
-        //BUSCAR OS REGISTROS
-        fetch(url + '?listar')
+function UpdateTable(){
+    //BUSCAR OS REGISTROS
+    fetch(url + '?listar')
         .then(function(data){
             return data.json();
         })
@@ -41,39 +40,48 @@ window.onload = function() {
                 linha += '<td>' + data[i].cd + '</td>';
                 linha += '<td>' + data[i].nome + '</td>';
                 linha += '<td></td>';
-                linha += '<td></td>';
+                linha += '<td><button class="btn btn-secondary" onclick="Excluir(this)" value="' + data[i].cd + '">Excluir</button></td>';
                 linha += '<tr>';
             }
-            
-            //INSERINDO LINHAS NA TABELA
-            tab.innerHTML = linha;
-        });
-    }
+        //INSERINDO LINHAS NA TABELA
+        tab.innerHTML = linha;
+    });
+}
 
-    const search = document.getElementById("search");
-    search.addEventListener('keyup', () => {
-        Search();
-    })
+const search = document.getElementById("search");
+search.addEventListener('keyup', () => {
+    Search();
+})
 
-    function Search() {
-        // Declare variables
-        let input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById("search");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("listaCategoria");
-        tr = table.getElementsByTagName("tr");
-      
-        // Loop through all table rows, and hide those who don't match the search query
-        for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[1];
-            if (td) {
-                txtValue = td.textContent || td.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+function Search() {
+    // Declare variables
+    let input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("search");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("listaCategoria");
+    tr = table.getElementsByTagName("tr");
+    
+    // Loop through all table rows, and hide those who don't match the search query
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[1];
+        if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
                 tr[i].style.display = "";
-                } else {
+            } else {
                 tr[i].style.display = "none";
-                }
             }
         }
     }
+}
+
+function Excluir(e) {
+    fetch (url + '?delCategoria=' + e.value)
+        .then(function(data){
+            return data.text();
+        })
+        .then(function(data){
+            alert(data);
+            UpdateTable();
+        });
 }
