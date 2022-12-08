@@ -1,4 +1,4 @@
-const url = '../php/api.php';
+let url = '../php/api.php';
 
 
 //BUSCAR OS REGISTROS PRIMEIRO DROPDOWN
@@ -55,10 +55,10 @@ categ.addEventListener('change', function(e) {
         .then(function(data){
             const tab = document.querySelector('#produto');
             let linha = '<option>Produtos</option>';
-        
+         
             //CRIANDO DROPDOWN, UMA POR VEZ
             for (i = 0; i < data.length; i++){;
-                linha += '<option valor="' + data[i].valor + '" foto="' + data[i].foto + '" nome="' + data[i].nome + '" value="' + data[i].cd + '">';
+                linha += '<option nome="' + data[i].nome + '" valor="' + data[i].valor + '" foto="' + data[i].foto + '" value="' + data[i].cd + '">';
                 linha += data[i].nome;
                 linha += '</option>';
             }
@@ -76,15 +76,14 @@ const resumo = document.querySelector('#resumo');
 
 btnAdd.addEventListener('click', function() {
 
-    const url = 'http://localhost/cardapio/';
+    let url = 'http://localhost/cardapio';
     
     let foto = url + produto.options[produto.selectedIndex].getAttribute('foto');
     let nome = produto.options[produto.selectedIndex].getAttribute('nome');
     let valor = produto.options[produto.selectedIndex].getAttribute('valor');
-
-    console.log();
+  
     let item = '<tr class="align-middle">';
-        item += '<td><img src="' + foto + '" width="100%"></td>';
+        item += '<td><img src="' + foto + '" width="10px"></td>';
         item += '<td>' + nome + '</td>';
         item += '<td>' + quant.value +'</td>';
         item += '<td>' + obs.value +'</td>';
@@ -93,16 +92,17 @@ btnAdd.addEventListener('click', function() {
         item += '<td>' + obs.value +'</td>';
         item += '</tr>';
 
-        AddItem(produto.value, nome, quant.value, obs.value, foto);
+        AddItem(produto.value, nome, quant.value, obs.value, foto, valor);
         resumo.innerHTML += item;
 })
 
-function AddItem(cd, nome, qts, obs, foto){
+function AddItem(cd, nome, qts, obs, foto, valor){
     let novo = {
         cd: cd,
         nome: nome,
         qts: qts,
         obs: obs,
+        valor: valor,
         foto: foto
     };
 
@@ -114,7 +114,6 @@ function AddItem(cd, nome, qts, obs, foto){
     }   
 
     let total = dados.length;
-    let item = '';
     let existe = false;
 
     for (let i = 0; i < total; i++){
@@ -147,11 +146,11 @@ function AddItem(cd, nome, qts, obs, foto){
             alert(dados);
         });
 }
-
+//CARREGAMENTO
 window.onload = function() {
     let dados = localStorage.pedido;
     let resumo = document.querySelector('#resumo');
-    alert("oi");
+
     if(dados){
         dados = JSON.parse(dados);
         let total = dados.length;
@@ -161,13 +160,36 @@ window.onload = function() {
             item += '<tr class="align-middle">';
             item += '<td><img src="' + dados[i].foto + '" width="100%"></td>';
             item += '<td>' + dados[i].nome + '</td>';
-            item += '<td>' + dados[i].quant + '</td>';
+            item += '<td>' + dados[i].qts + '</td>';
             item += '<td>' + dados[i].obs + '</td>';
-            item += '<td></td>';
-            item += '<td></td>';
-            item += '<td></td>';
+            item += '<td>' + dados[i].valor +'</td>';
+            item += '<td>' + (parseFloat(dados[i].qts) * parseFloat(dados[i].valor)) + '</td>';
+            item += '<td><button class="btn btn-primary" id="btn-excluir">Excluir</button></td>';
             item += '</tr>';
         }
         resumo.innerHTML += item;
     }
+    const btnExcluir = document.querySelector('#btn-excluir');
+
+    btnExcluir.addEventListener('click', function(){
+        let dados = localStorage.pedido;
+        if (!dados){
+            dados = [];
+        } else {
+            dados = JSON.parse(dados);
+        }   
+    
+        let total = dados.length;
+    
+        for (let i = 0; i < total; i++){
+    
+            if (dados[i].qts > 0){
+                let atual = parseInt(dados[i].qts);
+                dados[i].qts = atual - 1;
+            }
+        }
+        localStorage.setItem('pedido', JSON.stringify(dados));
+    })
 };
+
+

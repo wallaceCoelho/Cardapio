@@ -4,7 +4,7 @@ window.onload = function() {
     const btnCadCategoria = document.querySelector('#btn-cadastrar');
     const nome = document.querySelector('#nome');
     const email = document.querySelector('#email');
-    const status = document.querySelector('#id-prod');
+    const status = document.querySelector('#id-prod');  
     const senha = document.querySelector('#passw');
 
     btnCadCategoria.addEventListener('click', () => {
@@ -13,7 +13,7 @@ window.onload = function() {
         form.append('nome', nome.value);
         form.append('email', email.value);
         form.append('id-prod', status.value);
-        form.append('passw', passw.value);
+        form.append('passw', senha.value);
 
         fetch(url, {
             body: form,

@@ -6,7 +6,7 @@ window.onload = function (){
         const login = document.querySelector('#login');
         const senha = document.querySelector('#senha');
         
-        let url = '../php/api.php?login='+login.value+'&senha='+senha.value;
+        let url = 'php/api.php?login='+login.value+'&senha='+senha.value;
 
         fetch(url)
             .then(res => {
@@ -20,7 +20,7 @@ window.onload = function (){
                 } else {
                     localStorage.setItem('nome', json.user.nome);
 
-                    window.location = '../pages/adm.html';
+                    window.location = 'pages/adm.html';
                 }
             })
             .catch();

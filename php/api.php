@@ -6,7 +6,7 @@ $conn = new mysqli('localhost', 'root', '', 'sistema');
 //LOGIN
 if(isset($_GET['login']) && isset($_GET['senha'])) {
     //consulta no banco
-    $sql = 'SELECT * FROM user WHERE email ="'.$_GET['login'].'" AND senha ="'.$_GET['senha'].'"';
+    $sql = 'SELECT * FROM user WHERE email="'.$_GET['login'].'" AND senha="'.$_GET['senha'].'"';
     $res = $conn -> query($sql);
     
     if($res -> num_rows > 0) {
@@ -44,6 +44,7 @@ else if(isset($_POST['nm-cat'])) {
         echo "Erro".$conn -> error;
      }
 }
+
 //CADASTRAR PEDIDOS
 else if(isset($_POST['produto'])) {
 
