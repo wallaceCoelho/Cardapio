@@ -83,13 +83,13 @@ btnAdd.addEventListener('click', function() {
     let valor = produto.options[produto.selectedIndex].getAttribute('valor');
   
     let item = '<tr class="align-middle">';
-        item += '<td><img src="' + foto + '" width="10px"></td>';
+        item += '<td><img src="' + foto + '" width="20%"></td>';
         item += '<td>' + nome + '</td>';
         item += '<td>' + quant.value +'</td>';
         item += '<td>' + obs.value +'</td>';
         item += '<td>' + valor +'</td>';
-        item += '<td>' + (quant.value * parseFloat(valor)) +'</td>';
-        item += '<td>' + obs.value +'</td>';
+        item += '<td>' + (parseFloat(quant.value) * parseFloat(valor)).toFixed(2) +'</td>';
+        item += '<td><button class="btn btn-primary" id="btn-excluir" onclick="RemoveItem()" value="' + produto.value + '">Excluir</button></td>';
         item += '</tr>';
 
         AddItem(produto.value, nome, quant.value, obs.value, foto, valor);
@@ -143,13 +143,15 @@ function AddItem(cd, nome, qts, obs, foto, valor){
             return dados.text();
         })
         .then(function(dados){
-            alert(dados);
+            alert("Pedido adicionado!");
         });
 }
+
 //CARREGAMENTO
 window.onload = function() {
     let dados = localStorage.pedido;
     let resumo = document.querySelector('#resumo');
+    let quantidade;
 
     if(dados){
         dados = JSON.parse(dados);
@@ -157,39 +159,41 @@ window.onload = function() {
         let item = '';
 
         for(let i = 0; i < total; i++){
-            item += '<tr class="align-middle">';
-            item += '<td><img src="' + dados[i].foto + '" width="100%"></td>';
-            item += '<td>' + dados[i].nome + '</td>';
-            item += '<td>' + dados[i].qts + '</td>';
-            item += '<td>' + dados[i].obs + '</td>';
-            item += '<td>' + dados[i].valor +'</td>';
-            item += '<td>' + (parseFloat(dados[i].qts) * parseFloat(dados[i].valor)) + '</td>';
-            item += '<td><button class="btn btn-primary" id="btn-excluir">Excluir</button></td>';
-            item += '</tr>';
-        }
-        resumo.innerHTML += item;
-    }
-    const btnExcluir = document.querySelector('#btn-excluir');
-
-    btnExcluir.addEventListener('click', function(){
-        let dados = localStorage.pedido;
-        if (!dados){
-            dados = [];
-        } else {
-            dados = JSON.parse(dados);
-        }   
-    
-        let total = dados.length;
-    
-        for (let i = 0; i < total; i++){
-    
-            if (dados[i].qts > 0){
-                let atual = parseInt(dados[i].qts);
-                dados[i].qts = atual - 1;
+            
+            if(dados[i].qts > 0){
+                item += '<tr class="align-middle">';
+                item += '<td><img src="' + dados[i].foto + '" width="20%"></td>';
+                item += '<td>' + dados[i].nome + '</td>';
+                item += '<td>' + dados[i].qts + '</td>';
+                item += '<td>' + dados[i].obs + '</td>';
+                item += '<td>' + dados[i].valor +'</td>';
+                item += '<td>' + (parseFloat(dados[i].qts) * parseFloat(dados[i].valor)).toFixed(2) + '</td>';
+                item += '<td><button class="btn btn-primary" id="btn-excluir" onclick="RemoveItem()" value="' + dados[i].qts + '">Excluir</button></td>';
+                item += '</tr>';
+                quantidade = dados[i].qts;
             }
         }
-        localStorage.setItem('pedido', JSON.stringify(dados));
-    })
+        resumo.innerHTML += item; 
+    }
+    // let btnExcluir = document.querySelector('#btn-excluir');
+
+    // btnExcluir.addEventListener('click', function(){
+    //     RemoveItem();
+    // })
 };
+
+function RemoveItem() {
+    let itemValue = document.querySelector('#btn-excluir').value;
+    let dados = localStorage.pedido;
+    dados = JSON.parse(dados);
+
+    for (let i = 0; i < dados.length; i++){
+        novoQts = parseFloat(dados[i].qts) - 1;
+        dados[i].qts = novoQts;
+    }
+    
+    localStorage.setItem('pedido', JSON.stringify(dados));
+    location.reload();
+}
 
 

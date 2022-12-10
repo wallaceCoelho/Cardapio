@@ -27,9 +27,9 @@ else if(isset($_POST['email']) && isset($_POST['passw']) && $_POST['id-prod'] !=
 
     if($res){
         echo "Cadastrado com sucesso!";
-        } else {
+    } else {
         echo "Erro".$conn -> error;
-        }
+    }
 }
 
 //CADASTRAR CATEGORIA DE PRODUTOS
